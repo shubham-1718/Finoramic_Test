@@ -1,0 +1,26 @@
+int Solution::threeSumClosest(vector<int> &A, int B) {
+    sort(A.begin(), A.end());
+        int temp = 0, j, k;
+        int difference = INT_MAX, result = 0;
+        for(int i = 0; i < A.size(); i++)
+        {
+            j = i + 1;
+            k = A.size()-1;
+            while(j < k)
+            {
+                temp = A[i] + A[j] + A[k]; 
+                if(abs(temp - B) < difference)
+                {
+                    difference = abs(temp - B);
+                    result = temp;
+                }
+            
+                if(difference == 0)
+                    return result;
+                else if(temp - B < 0)
+                    j++;
+                else
+                    k--;
+            }    
+        }
+        return result;
